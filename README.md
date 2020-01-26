@@ -1,4 +1,4 @@
-###Запуск в контейнере
+Запуск в контейнере
 
 ```
 git clone git@github.com:symflex/testbook.git
@@ -12,8 +12,7 @@ docker-compose -f docker/docker-compose.yaml up -d
 3. добавить записи
 ```
 
-###Тестовое задание PHP+MySQL+Ajax
-#####Программа - "Телефонная книга".
+Тестовое задание PHP+MySQL+Ajax Программа - "Телефонная книга".
 
 ```
    Задача:
