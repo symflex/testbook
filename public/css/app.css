@@ -1,0 +1,40 @@
+.container {
+    position: relative;
+}
+
+.form-login {
+    position: relative;
+    margin: 150px 0 0 ;
+}
+
+.form-login form {
+    border: 1px solid #e2e3e5;
+    max-width: 350px;
+    margin: 0 auto;
+    padding: 15px 30px;
+}
+
+.preview {
+    position: relative;
+    margin: 25px 0;
+}
+
+.preview-image {
+    width: 100%;
+    height: auto;
+}
+
+.user-email {
+    margin: 0 15px;
+}
+
+.image {
+    object-fit: cover;
+    width: 80px;
+    height: 50px;
+}
+
+label.error {
+    font-size: 11px;
+    color: #b21f2d;
+}
