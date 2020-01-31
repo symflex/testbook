@@ -11,7 +11,7 @@
 <div class="container">
 
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-        <h5 class="my-0 mr-md-auto font-weight-normal">book</h5>
+        <h5 class="my-0 mr-md-auto font-weight-normal"><a href="/">book</a></h5>
         <?php if ($user_id): ?>
             <div class="user-email">
                 <i class="fa fa-user"></i>
@@ -22,8 +22,19 @@
             <a href="/sign-up" class="btn btn-primary">Регистрация</a>&nbsp;
             <a href="/sign-in" class="btn btn-primary">Войти</a>
         <?php endif; ?>
-
     </div>
+
+    <?php if ($this->isMessage()): ?>
+        <section>
+            <div class="alert alert-success">
+                <?= $this->getMessage() ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </section>
+    <?php endif; ?>
+
     <section>
     <?= $content ?>
     </section>

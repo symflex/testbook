@@ -41,6 +41,7 @@ class App
         $this->router = new Router($this->config->get('routes'));
 
         $viewConfig = $this->config->get('view', true);
+        $viewConfig[] = Session::instance();
         $this->view = new View(...$viewConfig);
 
         $dbConfig = $this->config->get('db', true);
@@ -64,6 +65,7 @@ class App
 
             $content = $controller($this->request, $this->db, $this->view, $this->image);
         } catch (Throwable $throwable) {
+            //var_dump($throwable->getTraceAsString());
             $content = $this->view->render('error.php', ['message' => $throwable->getMessage()]);
         }
 

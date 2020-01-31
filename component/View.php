@@ -2,6 +2,7 @@
 
 namespace Component;
 
+use Component\Session;
 use Exception;
 use RuntimeException;
 use function extract;
@@ -16,13 +17,18 @@ use const EXTR_SKIP;
  */
 class View
 {
+    public const MESSAGE = 'message';
+
     /**
      * @var string
      */
     private string $templatePath;
 
-    public function __construct(string $templatePath)
+    private Session $session;
+
+    public function __construct(string $templatePath, Session $session)
     {
+        $this->session = $session;
         $this->templatePath = $templatePath;
     }
 
@@ -48,5 +54,23 @@ class View
         ob_start();
         include $template;
         return (string) ob_get_clean();
+    }
+
+    /**
+     * @return bool
+     */
+    public function isMessage(): bool
+    {
+        return !empty($this->session->get(self::MESSAGE)) ?? false;
+    }
+
+    /**
+     * @return bool|mixed
+     */
+    public function getMessage()
+    {
+        $message = $this->session->get(self::MESSAGE);
+        $this->session->remove(self::MESSAGE);
+        return $message;
     }
 }

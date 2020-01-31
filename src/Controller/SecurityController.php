@@ -15,7 +15,9 @@ class SecurityController extends Controller
      */
     public function signIn(): string
     {
-        if (Session::instance()->userId()) {
+        $session = Session::instance();
+
+        if ($session->userId()) {
             $this->redirect('/');
         }
 
@@ -33,13 +35,14 @@ class SecurityController extends Controller
 
             if ($user) {
                 if (password_verify($plainPassword, $user->password)) {
-                    Session::instance()->add('email', $user->email);
-                    Session::instance()->add('user_id', $user->id);
+                    $session->add('email', $user->email);
+                    $session->add('user_id', $user->id);
                     $this->redirect('/');
                 }
             }
             $error = 'Неверный логин или пароль';
         }
+
         return $this->render('security/sign-in.php', [
             'error' => $error
         ]);
@@ -50,7 +53,9 @@ class SecurityController extends Controller
      */
     public function signUp(): string
     {
-        if (Session::instance()->userId()) {
+        $session = Session::instance();
+
+        if ($session->userId()) {
             $this->redirect('/');
         }
 
@@ -68,6 +73,7 @@ class SecurityController extends Controller
 
             if ($validator->isValid()) {
                 $repository->create($email, $plainPassword);
+                $session->add('message', 'Вы успешно зарегистрировались');
                 $this->redirect('/sign-in');
             }
 

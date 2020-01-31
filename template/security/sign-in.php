@@ -1,6 +1,9 @@
 <div class="form-login">
     <form method="post">
         <div class="form-group">
+            Форма входа
+        </div>
+        <div class="form-group">
             <label>Почта</label>
             <input type="email" name="email" value="<?= isset($email) ? $email : '' ?>" class="form-control" required>
         </div>
