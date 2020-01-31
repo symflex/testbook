@@ -113,8 +113,10 @@ class Book
 
         foreach ($items as $i => $item) {
             if ($i % 2 ===0) {
-                $items[$i]->phone = $numberFormatter->format($items[$i]->phone);
+                $items[$i]->phoneFormat = $numberFormatter->format($items[$i]->phone);
             }
+
+
         }
 
         return $items;

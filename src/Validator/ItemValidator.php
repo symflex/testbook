@@ -76,9 +76,11 @@ class ItemValidator extends Validator
             return;
         }
 
+        $mimeType = mime_content_type($file['tmp_name']);
+
         if ($file['size'] > 2097152) {
             $this->errors[self::FIELD_FILE] = 'Не допустимый размер файла';
-        } elseif (!in_array($file['type'], self::TYPES)) {
+        } elseif (!in_array($mimeType, self::TYPES)) {
             $this->errors[self::FIELD_FILE] = 'Недопустимый формат изображения';
         }
     }

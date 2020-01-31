@@ -92,12 +92,14 @@
     });
 
     function templateRow(strings, item, num) {
+
+        const phone = item.hasOwnProperty('phoneFormat') ? item.phoneFormat : item.phone;
         const template =
                 `<tr data-id="${item.id}">
                      <td align="center">${num}</td>
                      <td>${item.name}</td>
                      <td>${item.surname}</td>
-                     <td>${item.phone}</td>
+                     <td>${phone}</td>
                      <td>${item.email}</td>
                      <td width="100" align="center">
                         <img src="/images/${item.image}" class="image">
