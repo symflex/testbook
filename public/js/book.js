@@ -155,6 +155,7 @@
         let modal = $('#itemForm');
         $(form).attr('action', '/create');
         $(form).trigger('reset');
+        $('#image').attr('src', '');
         validator.resetForm();
         $(modal).modal('toggle');
     });
