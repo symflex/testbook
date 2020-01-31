@@ -18,6 +18,8 @@
 
         const image = this.files[0];
 
+        console.log(image)
+
         if (image.type.match(/image.*/)) {
             const reader = new FileReader();
             reader.onload = function (e) {
