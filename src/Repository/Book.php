@@ -47,9 +47,9 @@ class Book
     /**
      * @param int $id
      * @param int $userId
-     * @return array|null
+     * @return object|null
      */
-    public function find(int $id, int $userId): ?array
+    public function find(int $id, int $userId): ?object
     {
         return $this->db->find(
             sprintf('SELECT name, surname, phone, email, image FROM %s WHERE id = :id AND user_id = :user_id', self::TABLE),
