@@ -32,9 +32,9 @@ class SecurityController extends Controller
             $user = $repository->findByEmail($email);
 
             if ($user) {
-                if (password_verify($plainPassword, $user->password())) {
-                    Session::instance()->add('email', $user->email());
-                    Session::instance()->add('user_id', $user->id());
+                if (password_verify($plainPassword, $user->password)) {
+                    Session::instance()->add('email', $user->email);
+                    Session::instance()->add('user_id', $user->id);
                     $this->redirect('/');
                 }
             }
@@ -60,14 +60,14 @@ class SecurityController extends Controller
             $email = $this->request->post('email');
             $plainPassword = $this->request->post('plainPassword');
 
-            $validator = new UserValidator();
+            /* @var $repository User */
+            $repository = $this->createRepository(User::class);
+
+            $validator = new UserValidator($repository);
             $validator->validate($email, $plainPassword);
 
             if ($validator->isValid()) {
-                /* @var $repository User */
-                $repository = $this->createRepository(User::class);
                 $repository->create($email, $plainPassword);
-
                 $this->redirect('/sign-in');
             }
 

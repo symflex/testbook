@@ -46,13 +46,14 @@ class User
 
     /**
      * @param string $email
-     * @return User|null
+     * @return array|mixed
      */
-    public function findByEmail(string $email): ?UserModel
+    public function findByEmail(string $email)
     {
         return
-            $this->db->find('SELECT id, email, password FROM '.self::TABLE.' WHERE email = :email', [
-                'email' => $email
-            ], $this->db::FETCH_CLASS, UserModel::class);
+            $this->db->find(
+                'SELECT id, email, password FROM '.self::TABLE.' WHERE email = :email',
+                ['email' => $email]
+            );
     }
 }
