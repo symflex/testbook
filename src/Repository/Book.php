@@ -4,6 +4,7 @@ namespace Project\Repository;
 
 use Component\Database;
 use Component\Filesystem;
+use NumberFormatter;
 
 /**
  * Class Book
@@ -106,9 +107,16 @@ class Book
      */
     public function findByUserId(int $id): ?array
     {
-        return
-            $this->db->select('* FROM '.self::TABLE.' WHERE user_id = :id', [
-                'id' => $id
-            ]);
+        $numberFormatter = new NumberFormatter("ru", NumberFormatter::SPELLOUT);
+
+        $items = $this->db->select('* FROM '.self::TABLE.' WHERE user_id = :id', ['id' => $id]);
+
+        foreach ($items as $i => $item) {
+            if ($i % 2 ===0) {
+                $items[$i]->phone = $numberFormatter->format($items[$i]->phone);
+            }
+        }
+
+        return $items;
     }
 }
